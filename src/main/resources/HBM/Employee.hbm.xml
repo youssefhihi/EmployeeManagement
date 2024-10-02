@@ -2,10 +2,10 @@
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.empmanagement.app.model.Employee" table="employees">
-        <id name="id" column="id" type="uuid-binary">
-            <generator class="uuid2"/>
+        <id name="id" column="id" type="uuid-char">
+            <generator class="org.hibernate.id.UUIDGenerator"/>
         </id>
-        <property name="name" column="name" type="string"/>
+<property name="name" column="name" type="string"/>
         <property name="email" column="email" type="string"/>
         <property name="phone" column="phone" type="string"/>
         <property name="department" column="department" type="string"/>
