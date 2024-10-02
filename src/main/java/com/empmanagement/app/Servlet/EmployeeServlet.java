@@ -30,8 +30,7 @@ public class EmployeeServlet extends HttpServlet {
 
         request.setAttribute("employees",employees);
         request.setAttribute("errors", errors);
-
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/employees.jsp").forward(request,response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -53,7 +52,7 @@ public class EmployeeServlet extends HttpServlet {
         request.setAttribute("success", success);
         request.setAttribute("errors", errors);
 
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+        doGet(request, response);
     }
 
     public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -88,7 +87,7 @@ public class EmployeeServlet extends HttpServlet {
 
         request.setAttribute("success", success);
         request.setAttribute("errors", errors);
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/employees.jsp").forward(request,response);
     }
 
     public void destroy() {

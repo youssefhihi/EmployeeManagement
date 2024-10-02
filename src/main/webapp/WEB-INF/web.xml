@@ -11,30 +11,6 @@
 
     <servlet-mapping>
         <servlet-name>EmployeeServlet</servlet-name>
-        <url-pattern>/employees/add</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EmployeeServlet</servlet-name>
         <url-pattern>/employees</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EmployeeServlet</servlet-name>
-        <url-pattern>/employees/update</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>EmployeeServlet</servlet-name>
-        <url-pattern>/employees/delete</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>EmployeeServlet</servlet-name>
-        <url-pattern>/employees/search</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>EmployeeServlet</servlet-name>
-        <url-pattern>/employees/filter</url-pattern>
-    </servlet-mapping>
-
 </web-app>
