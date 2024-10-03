@@ -112,8 +112,11 @@
         </c:forEach>
     </div>
 </c:if>
-<button id="showFormButton">Show Form</button>
 
+<button id="showFormButton" type="button" class="button">
+    <span class="button__text">Add Item</span>
+    <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+</button>
 <form method="get" action="${pageContext.request.contextPath}/employees/search" class="search-container">
     <input type="search" placeholder="Search..." class="search-input" name="search" />
     <button class="search-button" type="submit">
