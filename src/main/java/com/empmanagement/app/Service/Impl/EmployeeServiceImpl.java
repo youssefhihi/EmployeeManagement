@@ -62,4 +62,10 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeException("failed to delete employee");
         }
     }
+
+    @Override
+    public List<Employee> searchEmployee(String query) throws EmployeeException{
+        return employeeRepo.search(query);
+    }
+
 }

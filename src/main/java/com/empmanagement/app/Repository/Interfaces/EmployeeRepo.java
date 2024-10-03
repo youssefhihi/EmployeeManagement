@@ -13,4 +13,5 @@ public interface EmployeeRepo {
     List<Employee> getAll() throws EmployeeException;
     Boolean update(Employee employee) throws EmployeeException;
     Boolean delete(Employee employee) throws EmployeeException;
+    List<Employee> search(String query) throws EmployeeException;
 }

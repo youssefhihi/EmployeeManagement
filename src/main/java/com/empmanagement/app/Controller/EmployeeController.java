@@ -30,4 +30,7 @@ public class EmployeeController {
     public String deleteEmployee(UUID id) throws EmployeeException {
        return employeeService.deleteEmployee(id);
     }
+    public List<Employee> searchEmployee(String query) throws EmployeeException{
+        return employeeService.searchEmployee(query);
+    }
 }

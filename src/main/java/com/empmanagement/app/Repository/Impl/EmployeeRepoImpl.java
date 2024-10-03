@@ -73,4 +73,17 @@ public class EmployeeRepoImpl implements EmployeeRepo {
             throw new EmployeeException(e.getMessage());
         }
     }
+
+    @Override
+    public List<Employee> search(String query) throws EmployeeException {
+        String hql = "FROM Employee WHERE lower(name) LIKE :query OR lower(email) LIKE :query OR lower(phone) LIKE :query";
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(hql, Employee.class)
+                    .setParameter("query", "%" + query.toLowerCase() + "%")
+                    .list();
+        } catch (Exception e) {
+            throw new EmployeeException(e.getMessage());
+        }
+    }
+
 }

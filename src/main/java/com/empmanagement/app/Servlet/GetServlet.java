@@ -40,7 +40,16 @@ public class GetServlet extends HttpServlet {
                 break;
             case "filter":
                 break;
-            case "search":
+            case "/employees/search":
+                try {
+                    String query = request.getParameter("search");
+                    employees = employeeController.searchEmployee(query);
+                } catch (EmployeeException e) {
+                    errors.add(e.getMessage());
+                }
+                request.setAttribute("errorsCatch", errors);
+                request.setAttribute("employees", employees);
+                getServletContext().getRequestDispatcher("/employees.jsp").forward(request,response);
                 break;
             default:
                 break;
