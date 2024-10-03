@@ -24,13 +24,12 @@ public class EmployeeServlet extends HttpServlet {
        List<String> errors  = new ArrayList<>();
         List<Employee> employees = new ArrayList<>();
         try {
-            employees = employeeController.getAllEmployees();
+           employees = employeeController.getAllEmployees();
         } catch (EmployeeException e) {
             errors.add(e.getMessage());
         }
-
         request.setAttribute("employees",employees);
-        request.setAttribute("error", errors);
+        request.setAttribute("errorsCatch", errors);
         getServletContext().getRequestDispatcher("/employees.jsp").forward(request,response);
     }
 
@@ -101,12 +100,16 @@ public class EmployeeServlet extends HttpServlet {
                 request.getParameter("post")
         );
         employee.setId(UUID.fromString(request.getParameter("id")));
-        try {
-            success = employeeController.updateEmployee(employee);
-        } catch (EmployeeException e) {
-            errors.add(e.getMessage());
+        List<String> validationErrors = EmployeeValidation.validateEmployee(employee);
+        if(validationErrors.isEmpty()){
+            try {
+                success = employeeController.updateEmployee(employee);
+            } catch (EmployeeException e) {
+                errors.add(e.getMessage());
+            }
+        }else {
+            errors = validationErrors;
         }
-
         request.setAttribute("success", success);
         request.setAttribute("errors", errors);
         doGet(request, response);

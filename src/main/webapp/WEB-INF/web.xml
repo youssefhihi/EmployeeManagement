@@ -8,7 +8,23 @@
         <servlet-name>EmployeeServlet</servlet-name>
         <servlet-class>com.empmanagement.app.Servlet.EmployeeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetServlet</servlet-name>
+        <servlet-class>com.empmanagement.app.Servlet.GetServlet</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>GetServlet</servlet-name>
+        <url-pattern>/employees/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetServlet</servlet-name>
+        <url-pattern>/employees/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetServlet</servlet-name>
+        <url-pattern>/employees/filter</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EmployeeServlet</servlet-name>
         <url-pattern>/employees</url-pattern>
