@@ -33,4 +33,7 @@ public class EmployeeController {
     public List<Employee> searchEmployee(String query) throws EmployeeException{
         return employeeService.searchEmployee(query);
     }
+    public List<Employee> filterEmployees(String post, String department) throws EmployeeException{
+        return employeeService.filterEmployees(post,department);
+    }
 }

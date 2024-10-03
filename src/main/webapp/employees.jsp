@@ -112,17 +112,45 @@
         </c:forEach>
     </div>
 </c:if>
-<button id="showFormButton">Show Form</button>
 
-<form method="get" action="${pageContext.request.contextPath}/employees/search" class="search-container">
-    <input type="search" placeholder="Search..." class="search-input" name="search" />
-    <button class="search-button" type="submit">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M10 2a8 8 0 1 0 6.32 13.32l4.16 4.16a1 1 0 0 0 1.41-1.41l-4.16-4.16A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12A6 6 0 0 1 10 4z"/>
-        </svg>
-    </button>
-</form >
+<button id="showFormButton" type="button" class="button">
+    <span class="button__text">Add Item</span>
+    <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+</button>
+<div class="flex">
+    <form action="${pageContext.request.contextPath}/employees/filter" method="get" class="filter-form">
+        <div class="filter-group">
+            <label for="department" class="filter-label">Department</label>
+            <select name="department" class="filter-select">
+                <option value="" selected disabled>-- Select Department --</option>
+                <c:forEach var="depatment" items="${departments}">
+                    <option value="${depatment}">${depatment}</option>
+                </c:forEach>
 
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="post" class="filter-label">Post</label>
+            <select name="post" id="postFilter" class="filter-select">
+                <option value="" disabled selected>-- Select Post --</option>
+                <c:forEach var="post" items="${posts}">
+                    <option value="${post}">${post}</option>
+                </c:forEach>
+            </select>
+        </div>
+        <button type="submit" class="filter-button">Filter</button>
+    </form>
+
+
+    <form method="get" action="${pageContext.request.contextPath}/employees/search" class="search-container">
+        <input type="search" placeholder="Search..." class="search-input" name="search" />
+        <button class="search-button" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M10 2a8 8 0 1 0 6.32 13.32l4.16 4.16a1 1 0 0 0 1.41-1.41l-4.16-4.16A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12A6 6 0 0 1 10 4z"/>
+            </svg>
+        </button>
+    </form >
+</div>
 <div class="container">
     <ul class="responsive-table">
         <li class="table-header">

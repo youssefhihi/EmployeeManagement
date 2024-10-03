@@ -13,5 +13,6 @@ public interface EmployeeService {
     String updateEmployee(Employee employee) throws EmployeeException;
     String deleteEmployee(UUID id) throws EmployeeException;
     List<Employee> searchEmployee(String query) throws EmployeeException;
+    List<Employee> filterEmployees(String post, String department) throws EmployeeException;
 
 }

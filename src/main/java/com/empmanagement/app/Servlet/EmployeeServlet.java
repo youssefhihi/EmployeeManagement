@@ -28,6 +28,10 @@ public class EmployeeServlet extends HttpServlet {
         } catch (EmployeeException e) {
             errors.add(e.getMessage());
         }
+        List <String> departments = employees.stream().map(Employee::getDepartment).distinct().toList();
+        List <String> posts = employees.stream().map(Employee::getPost).distinct().toList();
+        request.setAttribute("departments",departments);
+        request.setAttribute("posts",posts);
         request.setAttribute("employees",employees);
         request.setAttribute("errorsCatch", errors);
         getServletContext().getRequestDispatcher("/employees.jsp").forward(request,response);
