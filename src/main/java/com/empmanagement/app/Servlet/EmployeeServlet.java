@@ -8,6 +8,7 @@ import java.util.UUID;
 import com.empmanagement.app.Controller.EmployeeController;
 import com.empmanagement.app.Exeption.EmployeeException;
 import com.empmanagement.app.model.Employee;
+import com.empmanagement.app.utils.validation.EmployeeValidation;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 
@@ -23,37 +24,53 @@ public class EmployeeServlet extends HttpServlet {
        List<String> errors  = new ArrayList<>();
         List<Employee> employees = new ArrayList<>();
         try {
-            employees = employeeController.getAllEmployees();
+           employees = employeeController.getAllEmployees();
         } catch (EmployeeException e) {
             errors.add(e.getMessage());
         }
-
         request.setAttribute("employees",employees);
-        request.setAttribute("errors", errors);
-
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+        request.setAttribute("errorsCatch", errors);
+        getServletContext().getRequestDispatcher("/employees.jsp").forward(request,response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
-        List<String> errors  = new ArrayList<>();
-        String success = "";
-       Employee employee = new Employee(
-                request.getParameter("name"),
-                request.getParameter("email"),
-                request.getParameter("department"),
-                request.getParameter("phone"),
-                request.getParameter("post"));
-        try{
-            success =  employeeController.addEmployee(employee);
-        } catch (EmployeeException e) {
-            errors.add(e.getMessage());
+        String method = request.getParameter("method");
+        switch (method){
+            case "delete":
+                doDelete(request, response);
+                break;
+            case "update":
+                doPut(request, response);
+                break;
+            case "post":
+                List<String> errors  = new ArrayList<>();
+                String success = "";
+                Employee employee = new Employee(
+                        request.getParameter("name"),
+                        request.getParameter("email"),
+                        request.getParameter("department"),
+                        request.getParameter("phone"),
+                        request.getParameter("post"));
+
+                List<String> validationErrors = EmployeeValidation.validateEmployee(employee);
+                if(validationErrors.isEmpty()){
+                    try{
+                        success =  employeeController.addEmployee(employee);
+                    } catch (EmployeeException e) {
+                        errors.add(e.getMessage());
+                    }
+                }else {
+                    errors = validationErrors;
+                }
+                request.setAttribute("success", success);
+                request.setAttribute("errors", errors);
+                doGet(request, response);
+                break;
+            default:
+                break;
         }
 
-        request.setAttribute("success", success);
-        request.setAttribute("errors", errors);
-
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
     }
 
     public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -66,6 +83,9 @@ public class EmployeeServlet extends HttpServlet {
         } catch (EmployeeException e) {
             errors.add(e.getMessage());
         }
+        request.setAttribute("success", success);
+        request.setAttribute("errors", errors);
+        doGet(request, response);
     }
 
     public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -80,16 +100,21 @@ public class EmployeeServlet extends HttpServlet {
                 request.getParameter("post")
         );
         employee.setId(UUID.fromString(request.getParameter("id")));
-        try {
-            success = employeeController.updateEmployee(employee);
-        } catch (EmployeeException e) {
-            errors.add(e.getMessage());
+        List<String> validationErrors = EmployeeValidation.validateEmployee(employee);
+        if(validationErrors.isEmpty()){
+            try {
+                success = employeeController.updateEmployee(employee);
+            } catch (EmployeeException e) {
+                errors.add(e.getMessage());
+            }
+        }else {
+            errors = validationErrors;
         }
-
         request.setAttribute("success", success);
         request.setAttribute("errors", errors);
-        getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+        doGet(request, response);
     }
+
 
     public void destroy() {
     }

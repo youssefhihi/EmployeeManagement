@@ -1,5 +1,4 @@
 const form = document.getElementById('employeeForm');
-
 // inputs
 const name = form.querySelector('#name');
 const email = form.querySelector('#email');
@@ -15,14 +14,15 @@ const departmentError = form.querySelector('#departmentValid');
 const postError = form.querySelector('#postValid');
 
 // regex patterns
-const nameRegex = /^[a-zA-Z0-9\s]{3,50}$/;
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phoneRegex = /^[0-9]{10}$/; // Assuming phone should be 10 digits
-const departmentRegex = /^[a-zA-Z\s]{3,50}$/;
-const postRegex = /^[a-zA-Z\s]{3,50}$/;
+const nameRegex = /^[a-zA-Z0-9\s]{2,50}$/;
+const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+const phoneRegex = /^[0-9]{10}$/;
+const departmentRegex = /^[a-zA-Z\s]{2,50}$/;
+const postRegex = /^[a-zA-Z\s]{2,50}$/;
 
 form.addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent form submission if validation fails
+    e.preventDefault();
+    console.log("hiiiiiiiiii");
     var isValid = true;
 
     // Validate name

@@ -3,12 +3,12 @@ package com.empmanagement.app.model;
 import java.util.UUID;
 
 public class Employee {
-    UUID id;
-    String name;
-    String email;
-    String phone;
-    String department;
-    String post;
+    private UUID id;
+    private String name;
+    private String email;
+    private String phone;
+    private String department;
+    private String post;
 
     public Employee(String name, String email, String department, String phone, String post) {
         this.name = name;
