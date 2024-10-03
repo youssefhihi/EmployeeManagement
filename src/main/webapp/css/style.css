@@ -6,21 +6,23 @@ body {
 }
 
 
-form {
+#employeeForm {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 400px;
+    width: 40vw;
+    height: 90vh;
     position: fixed;
     z-index: 9999;
     top: 10px;
-    left: -450px;
+    left: -650px;
+    overflow-y: scroll;
     transition: transform 0.8s ease-in-out;
 }
 
-form.center {
-    transform: translateX(850px);
+#employeeForm.center {
+    transform: translateX(950px);
 }
 
 label {
@@ -60,43 +62,6 @@ input[type="submit"]:hover {
     }
 }
 
-
-#employeeTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 14px;
-    text-align: left;
-}
-
-#employeeTable thead tr {
-    background-color: gray;
-    color: white;
-    text-align: left;
-    font-weight: bold;
-}
-
-#employeeTable th, #employeeTable td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-}
-
-#employeeTable tbody tr {
-    border-bottom: 1px solid #ddd;
-}
-
-#employeeTable tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-#employeeTable tbody tr:last-of-type {
-    border-bottom: 2px solid #4CAF50;
-}
-
-#employeeTable tbody tr:hover {
-    background-color: #f1f1f1;
-    cursor: pointer;
-}
 
 .popup {
     margin: 10px;
@@ -139,3 +104,155 @@ input[type="submit"]:hover {
 .success-message {
     color: #2b641e;
 }
+
+.error-popup {
+    background-color: #fef2f2;
+    border: solid 1px #f87171;
+}
+.error-icon path {
+    fill: #f87171;
+}
+.error-message {
+    color: #991b1b;
+}
+
+.container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.responsive-table {
+    li {
+        border-radius: 3px;
+        padding: 25px 30px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 25px;
+    }
+    .table-header {
+        background-color: #95A5A6;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+    .table-row {
+        background-color: #ffffff;
+        box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+    }
+    .col-1 {
+        flex-basis: 20%;
+    }
+    .col-2 {
+        flex-basis: 30%;
+    }
+    .col-3 {
+        flex-basis: 20%;
+    }
+    .col-4 {
+        flex-basis: 20%;
+    }
+    .col-5 {
+        flex-basis: 20%;
+    }
+
+    @media all and (max-width: 767px) {
+        .table-header {
+            display: none;
+        }
+        .table-row{
+
+        }
+        li {
+            display: block;
+        }
+        .col {
+
+            flex-basis: 100%;
+
+        }
+        .col {
+            display: flex;
+            padding: 10px 0;
+            &:before {
+                color: #6C7A89;
+                padding-right: 10px;
+                content: attr(data-label);
+                flex-basis: 50%;
+                text-align: right;
+            }
+        }
+    }
+}
+.operations {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.delete-icon, .edit-icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.delete-icon:hover, .edit-icon:hover {
+    transform: scale(1.1);
+}
+
+.delete-icon svg, .edit-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: #e74c3c;
+}
+
+.edit-icon svg {
+    fill: #3498db;
+}
+
+.operations button,
+.operations a {
+    margin: 0 5px;
+}
+
+
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 2px solid #95A5A6;
+    border-radius: 25px;
+    overflow: hidden;
+    max-width: 400px;
+    margin: auto;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    flex: 1;
+}
+
+.search-button {
+    background-color: #95A5A6;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #7D9B9A; /* Darker shade on hover */
+}
+
+.search-button svg {
+    width: 18px; /* Size of the search icon */
+    height: 18px; /* Size of the search icon */
+    fill: #fff; /* Icon color */
+}
+
