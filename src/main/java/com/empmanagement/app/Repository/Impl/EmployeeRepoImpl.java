@@ -87,5 +87,19 @@ public class EmployeeRepoImpl implements EmployeeRepo {
             throw new EmployeeException(e.getMessage());
         }
     }
+    @Override
+    public List<Employee> filter(String post, String department) throws EmployeeException {
+        String hql = "FROM Employee WHERE department LIKE :department OR post LIKE :post ";
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            return session.createQuery(hql, Employee.class)
+                    .setParameter("department", department)
+                    .setParameter("post", post)
+                    .list();
+
+        } catch (Exception e) {
+            throw new EmployeeException(e.getMessage());
+        }
+    }
 
 }

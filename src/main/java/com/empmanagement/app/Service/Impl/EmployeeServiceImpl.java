@@ -68,4 +68,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepo.search(query);
     }
 
+    @Override
+    public List<Employee> filterEmployees(String post, String department) throws EmployeeException{
+        return employeeRepo.filter(post,department);
+    }
+
 }
