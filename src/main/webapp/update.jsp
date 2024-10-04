@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/update.css">
 </head>
 <body>
+<a class="back" href="${pageContext.request.contextPath}/employees" > Go Back </a>
 <form id="updateForm" action="${pageContext.request.contextPath}/employees" method="post">
     <input type="hidden" name="method" value="update" />
      <input value="${employee.getId()}" name="id" type="hidden">
@@ -29,7 +30,7 @@
     <input type="text" id="post" name="post"  value="${employee.getPost()}">
     <span id="postValid" style="color: red; display: none;">Please enter a valid post.</span><br><br>
 
-    <input type="submit" value="Add Employee">
+    <input type="submit" value="update Employee">
 </form>
 <script src="${pageContext.request.contextPath}/js/UpdateForm.js"></script>
 </body>

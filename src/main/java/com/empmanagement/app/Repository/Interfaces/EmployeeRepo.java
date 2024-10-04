@@ -15,4 +15,5 @@ public interface EmployeeRepo {
     Boolean delete(Employee employee) throws EmployeeException;
     List<Employee> search(String query)  throws EmployeeException;
     List<Employee> filter(String post, String department)  throws EmployeeException;
+    Optional<Employee> findByEmail(String email) throws EmployeeException ;
 }
