@@ -53,18 +53,19 @@
     background-color: grey;
 }
 .back{
-    width: 30%;
+    width: 70px;
+    margin-top: 16px;
     padding: 12px;
     background-color: grey;
     color: white;
     border: none;
+    text-decoration: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 13px;
     font-weight: bold;
     text-transform: uppercase;
     transition: background-color 0.3s ease-in-out;
-
 }
 
 #updateForm #name,

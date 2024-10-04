@@ -169,7 +169,7 @@
             <div class="col col-4" data-label="phone">${employee.getPhone()}</div>
             <div class="col col-5" data-label="post">${employee.getPost()}</div>
             <div class="col col-5 operations" data-label="operations">
-                <form class="deleteForm" action="${pageContext.request.contextPath}/employees" method="post">
+                <form class="deleteForm" action="${pageContext.request.contextPath}/employees" method="post" onsubmit="return confirm('Are you sure you want to delete this employee?')">
                     <input type="hidden" name="method" value="delete" />
                     <input type="hidden" name="id" value="${employee.getId()}" />
                     <button type="submit" class="delete-icon">
