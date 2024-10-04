@@ -4,6 +4,7 @@ import com.empmanagement.app.Exeption.EmployeeException;
 import com.empmanagement.app.model.Employee;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface EmployeeService {
@@ -14,5 +15,6 @@ public interface EmployeeService {
     String deleteEmployee(UUID id) throws EmployeeException;
     List<Employee> searchEmployee(String query) throws EmployeeException;
     List<Employee> filterEmployees(String post, String department) throws EmployeeException;
+    Optional<Employee> findByEmail(String email) throws EmployeeException ;
 
 }

@@ -73,4 +73,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepo.filter(post,department);
     }
 
+    @Override
+    public Optional<Employee> findByEmail(String email) throws EmployeeException{
+        return employeeRepo.findByEmail(email);
+    }
+
 }

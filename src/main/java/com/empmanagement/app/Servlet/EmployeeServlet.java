@@ -56,16 +56,15 @@ public class EmployeeServlet extends HttpServlet {
                         request.getParameter("department"),
                         request.getParameter("phone"),
                         request.getParameter("post"));
-
-                List<String> validationErrors = EmployeeValidation.validateEmployee(employee);
+                try{
+                    List<String> validationErrors = EmployeeValidation.validateEmployee(employee,false);
                 if(validationErrors.isEmpty()){
-                    try{
-                        success =  employeeController.addEmployee(employee);
-                    } catch (EmployeeException e) {
-                        errors.add(e.getMessage());
-                    }
+                    success =  employeeController.addEmployee(employee);
                 }else {
                     errors = validationErrors;
+                }
+                } catch (EmployeeException e) {
+                    errors.add(e.getMessage());
                 }
                 request.setAttribute("success", success);
                 request.setAttribute("errors", errors);
@@ -104,15 +103,15 @@ public class EmployeeServlet extends HttpServlet {
                 request.getParameter("post")
         );
         employee.setId(UUID.fromString(request.getParameter("id")));
-        List<String> validationErrors = EmployeeValidation.validateEmployee(employee);
-        if(validationErrors.isEmpty()){
-            try {
+        try {
+            List<String> validationErrors = EmployeeValidation.validateEmployee(employee,true);
+            if(validationErrors.isEmpty()){
                 success = employeeController.updateEmployee(employee);
-            } catch (EmployeeException e) {
-                errors.add(e.getMessage());
+            }else {
+                errors = validationErrors;
             }
-        }else {
-            errors = validationErrors;
+        } catch (EmployeeException e) {
+            errors.add(e.getMessage());
         }
         request.setAttribute("success", success);
         request.setAttribute("errors", errors);

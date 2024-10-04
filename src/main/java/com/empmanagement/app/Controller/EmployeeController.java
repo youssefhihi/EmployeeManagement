@@ -6,6 +6,7 @@ import com.empmanagement.app.Service.Interfaces.EmployeeService;
 import com.empmanagement.app.model.Employee;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class EmployeeController {
@@ -35,5 +36,9 @@ public class EmployeeController {
     }
     public List<Employee> filterEmployees(String post, String department) throws EmployeeException{
         return employeeService.filterEmployees(post,department);
+    }
+
+    public Optional<Employee> findByEmail(String email) throws EmployeeException  {
+        return employeeService.findByEmail(email);
     }
 }

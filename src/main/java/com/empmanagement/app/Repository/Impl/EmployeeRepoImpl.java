@@ -38,6 +38,20 @@ public class EmployeeRepoImpl implements EmployeeRepo {
     }
 
     @Override
+    public Optional<Employee> findByEmail(String email) throws EmployeeException {
+        String hql = "FROM Employee WHERE email = :email";
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Employee employee = session.createQuery(hql, Employee.class)
+                    .setParameter("email", email)
+                    .uniqueResult();
+            return Optional.ofNullable(employee);
+        } catch (Exception e) {
+            throw new EmployeeException("Error fetching employee by email: " + e.getMessage());
+        }
+    }
+
+
+    @Override
     public List<Employee> getAll() throws EmployeeException {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from Employee", Employee.class).list();
@@ -101,5 +115,6 @@ public class EmployeeRepoImpl implements EmployeeRepo {
             throw new EmployeeException(e.getMessage());
         }
     }
+
 
 }
